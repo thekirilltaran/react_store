@@ -1,0 +1,9 @@
+{
+    "components": {
+        "Button": {
+            "borderRadius": 0,
+                "borderRadiusLG": 0
+        }
+    },
+    "token": {}
+}

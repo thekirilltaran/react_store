@@ -1,0 +1,66 @@
+.container {
+  padding: 0 15px;
+  max-width: 1430px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.ant-menu.menu {
+  flex-grow: 1;
+  background: none;
+  border: none;
+  line-height: 30px;
+  a {
+    text-decoration: none;
+  }
+}
+
+@primary-color: #000;
+:root {
+  --white: #fff;
+  --black: #000;
+
+  /* Primary colors*/
+  --primary-1: #2b8379;
+  --primary-2: #19a596;
+  --primary-3: #7fd1c7;
+  --primary-4: #7fd1c7;
+  --primary-5: #d0f3ef;
+
+  /* Neutral colors */
+  --neutral-1: #2c2c2c;
+  --neutral-2: #434343;
+  --neutral-3: #94868b;
+  --neutral-4: #d9cfd3;
+  --neutral-5: #f2ecee;
+
+  /* Accent-blue colors */
+  --accent-1: #970e3d;
+  --accent-2: #c43464;
+  --accent-3: #de7699;
+  --accent-4: #e6c3ce;
+  --accent-5: #fff2f7;
+}
+
+body {
+  background-color: var(--neutral-5);
+  margin: 0;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: table;
+  min-height: 100vh;
+  padding-top: 101px;
+}
+
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+.section {
+  padding: 70px 0 90px;
+}

@@ -1,0 +1,47 @@
+.header {
+  position: fixed;
+  background: #ffffffe6;
+  width: 100%;
+  z-index: 100;
+  left: 0;
+  height: initial;
+  top: 0;
+  padding: 15px 0;
+  .action {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .select-header {
+    width: 60px;
+    margin-left: 20px;
+    .ant-select-selector {
+      background: transparent;
+    }
+  }
+  .cart-count {
+    font-size: 25px;
+    color: rgb(22, 22, 22);
+    display: block;
+    margin-left: 20px;
+    position: relative;
+    .value {
+      position: absolute;
+      right: -35%;
+      top: 15%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      padding-left: 4px;
+      padding-right: 4px;
+      border-radius: 50px;
+      font-size: 12px;
+      color: #fff;
+      background: #6c6ed5;
+    }
+  }
+}
