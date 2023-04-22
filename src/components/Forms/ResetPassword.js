@@ -13,7 +13,7 @@ import { Button, Input, Space, Form, Checkbox } from "antd";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
 
 
-function FormLogIn() {
+export default function FormResetPass() {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [remember, setRemember] = useState(JSON.parse(localStorage.getItem("userAuth")) ?? null);
@@ -59,55 +59,16 @@ function FormLogIn() {
             })
     }
 
-    const handleLoginGoogle = (e)=> {
-        signInWithPopup(auth, provider)
-            .then((result) => {
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                const user = result.user;
-                dispatch(setUser({
-                                email: user.email,
-                                id: user.uid,
-                                token: user.accessToken,
-                            }));
-                // navigate('/profile');
-            }).catch((error) => {
-                console.log(error)
-                showMess("error", error.message)
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
-            });
+
+    if (remember) {
+        dispatch(setUser({
+            email: remember.email,
+            id: remember.uid,
+            token: remember.accessToken,
+        }));
     }
 
-    const handleLoginFacebook = (e)=> {
-        const provider = new FacebookAuthProvider();
-        signInWithPopup(auth, provider)
-            .then((result) => {
-                const credential = FacebookAuthProvider.credentialFromResult(result);
-                const accessToken = credential.accessToken;
-                const user = result.user;
-                dispatch(setUser({
-                    email: user.email,
-                    id: user.uid,
-                    token: user.accessToken,
-                }));
-                // navigate('/profile');
-            })
-            .catch((error) => {
-                console.log(error)
-                showMess("error", error.message)
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // The email of the user's account used.
-                const email = error.customData.email;
-                // The AuthCredential type that was used.
-                const credential = FacebookAuthProvider.credentialFromError(error);
-            });
-    }
+
 
     return (<>
             {contextHolder}
@@ -132,32 +93,15 @@ function FormLogIn() {
                            onChange={(e) => setEmail(e.target.value)}/>
                 </Form.Item>
 
-                <Form.Item
-                    label="Password"
-                    name="password"
-                    rules={[{ required: true, message: 'Please input your password!' }]}
-                >
-                    <Input.Password type="password"
-                                    value={pass}
-                                    onChange={(e) => setPass(e.target.value)}
-                                    placeholder="password"/>
-                </Form.Item>
-
-                <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 4, span: 16 }}>
-                    <Checkbox>Remember me</Checkbox>
-                </Form.Item>
-
                 <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
                     <Space>
                         <Button type="primary" htmlType="submit"  onClick={() => handleLogin(email, pass)}>Log in</Button>
-                        <Button type="default"  htmlType="button" onClick={(e) => handleLoginGoogle(e)}>Log in google <GoogleOutlined /></Button>
-                        <Button type="primary"  htmlType="button" onClick={(e) => handleLoginFacebook(e)}>Log in Facebook <FacebookOutlined /></Button>
                     </Space>
                 </Form.Item>
 
                 <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
                     <div className="action-form">
-                        <p>Forgot password? <Link to="/reset_password">Reset password</Link></p>
+                        <p>Have account? <Link to="/login">Log in</Link></p>
                         <p>Not a member? <Link to="/sign_up">Sign up</Link></p>
                     </div>
                 </Form.Item>
@@ -165,5 +109,3 @@ function FormLogIn() {
         </>
     )
 }
-
-export default FormLogIn;

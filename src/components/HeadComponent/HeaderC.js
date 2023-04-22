@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Col, Layout, Menu, Row, Switch, Select } from "antd";
-import { MenuOutlined, UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { Col, Layout, Menu, Row, Switch, Select, Button } from "antd";
+import { MenuOutlined, UserOutlined, ShoppingCartOutlined, HeartOutlined } from "@ant-design/icons";
 import { Link, NavLink } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 import useLocale from "hooks/useLocale";
@@ -18,6 +18,8 @@ import {
     Menu_link4
 } from "i18n/Header/header";
 import { useSelector } from "react-redux";
+import { useAuth } from "hooks/useAuth";
+
 
 const {Header} = Layout;
 
@@ -59,6 +61,7 @@ export default function HeaderC () {
     const [theme, setTheme] = useState('dark');
     const { setLocale } = useLocale();
     const cartCount = useSelector(cartCountSelector);
+    const {isAuth} = useAuth();
 
     const changeTheme = (value) => {
         setTheme(value ? 'dark' : 'light');
@@ -67,7 +70,6 @@ export default function HeaderC () {
     const handleChangeLocale = (value) => {
         setLocale(value);
     };
-
     return <Header className="header">
                 <div className="container">
                     <Row gutter={30} align="middle">
@@ -94,16 +96,35 @@ export default function HeaderC () {
                                     options={language}
                                     bordered={false}
                                 />
-                                <Link type="primary"
-                                      to="/profile"
-                                      shape="circle"
-                                      size="small"
-                                      style={{"fontSize": "25px",
-                                          color: "#161616",
-                                          display: 'block',
-                                          marginLeft: "20px"}}>
-                                    <UserOutlined />
+                                {!isAuth ?
+                                    <Link type="primary"
+                                          to="/login"
+                                          shape="circle"
+                                          size="small"
+                                          style={{"fontSize": "25px",
+                                              color: "#161616",
+                                              display: 'block',
+                                              marginLeft: "20px"}}>
+                                        <UserOutlined />
+                                    </Link>
+                                :
+                                    <Link type="primary"
+                                          to="/profile"
+                                          shape="circle"
+                                          size="small"
+                                          style={{"fontSize": "25px",
+                                              color: "#161616",
+                                              display: 'block',
+                                              marginLeft: "20px"}}>
+                                        <UserOutlined />
+                                    </Link>
+
+                                }
+                                <Link to="/favorites" className="btn-fav"
+                                    size="large">
+                                    <HeartOutlined />
                                 </Link>
+
                                 <Link to="/cart"
                                       type="primary"
                                       shape="circle"

@@ -1,4 +1,4 @@
-import Product from "./../Product/Product.js";
+import Product from "../Card/Card.js";
 import {useState} from 'react';
 
 
