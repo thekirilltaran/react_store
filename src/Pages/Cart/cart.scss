@@ -35,3 +35,23 @@
   font-size: 20px;
   font-weight: 700;
 }
+
+.btn-del {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  z-index: 2;
+  &:hover {
+    transform: scale(1.5), translateY(-50%);
+  }
+  svg {
+    width: 25px;
+    height: 25px;
+    fill: red;
+  }
+}

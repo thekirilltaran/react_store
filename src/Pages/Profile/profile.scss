@@ -1,0 +1,33 @@
+.auth-form {
+  background: #fff;
+  padding: 30px;
+  margin: 30px 0;
+  h1 {
+    margin-top: 0;
+  }
+  form {
+    margin: 0 auto;
+  }
+}
+
+.section-profile {
+  .user-avatar {
+    width: 250px;
+    height: 250px;
+    position: relative;
+  }
+  .list-info {
+    margin-bottom: 30px;
+    li {
+      margin-bottom: 15px;
+    }
+  }
+  .ant-avatar-string {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) !important;
+    display: block;
+    font-size: 70px;
+  }
+}

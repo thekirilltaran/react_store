@@ -13,7 +13,7 @@ import FooterC from 'components/FootComponent/FooterC';
 import ContentC from 'Pages/index'
 
 import { Layout} from 'antd';
-import './App.scss';
+import 'assets/scss/main.scss';
 
 const defaultLocale = LOCALES.EN;
 

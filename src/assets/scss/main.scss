@@ -1,0 +1,336 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* make sure to set some focus styles for accessibility */
+
+:focus {
+  outline: 0;
+}
+
+/* HTML5 display-role reset for older browsers */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote {
+  &:before, &:after {
+    content: '';
+    content: none;
+  }
+}
+
+q {
+  &:before, &:after {
+    content: '';
+    content: none;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input[type=search] {
+  &::-webkit-search-cancel-button, &::-webkit-search-decoration, &::-webkit-search-results-button, &::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+textarea {
+  overflow: auto;
+  vertical-align: top;
+  resize: vertical;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+
+audio, canvas, video {
+  display: inline-block;
+  display: inline;
+  zoom: 1;
+  max-width: 100%;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+
+[hidden] {
+  display: none;
+}
+
+html {
+  font-size: 100%;
+
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+
+  /* 2 */
+  -ms-text-size-adjust: 100%;
+
+  /* 2 */
+}
+
+a {
+  &:focus {
+    outline: thin dotted;
+  }
+
+  &:active, &:hover {
+    outline: 0;
+  }
+}
+
+img {
+  border: 0;
+
+  /* 1 */
+  -ms-interpolation-mode: bicubic;
+
+  /* 2 */
+}
+
+figure, form {
+  margin: 0;
+}
+
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+  border: 0;
+
+  padding: 0;
+  white-space: normal;
+
+  *margin-left: -7px;
+
+}
+
+
+button, input, select, textarea {
+  font-size: 100%;
+
+  /* 1 */
+  margin: 0;
+
+  /* 2 */
+  vertical-align: baseline;
+
+  /* 3 */
+  *vertical-align: middle;
+
+  /* 3 */
+}
+
+
+button, input {
+  line-height: normal;
+}
+
+button, select {
+  text-transform: none;
+}
+
+button, html input[type="button"] {
+  -webkit-appearance: button;
+
+  /* 2 */
+  cursor: pointer;
+
+  /* 3 */
+  *overflow: visible;
+
+  /* 4 */
+}
+
+input {
+  &[type="reset"], &[type="submit"] {
+    -webkit-appearance: button;
+
+    /* 2 */
+    cursor: pointer;
+
+    /* 3 */
+    *overflow: visible;
+
+    /* 4 */
+  }
+}
+
+
+button[disabled], html input[disabled] {
+  cursor: default;
+}
+
+
+input {
+  &[type="checkbox"], &[type="radio"] {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    /* 1 */
+    padding: 0;
+
+    /* 2 */
+    *height: 13px;
+
+    /* 3 */
+    *width: 13px;
+
+    /* 3 */
+  }
+
+  &[type="search"] {
+    -webkit-appearance: textfield;
+
+    /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+
+    /* 2 */
+    box-sizing: content-box;
+
+    &::-webkit-search-cancel-button, &::-webkit-search-decoration {
+      -webkit-appearance: none;
+    }
+  }
+}
+
+button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+::-moz-selection, ::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+img {
+  vertical-align: middle;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+
+
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+.container {
+  padding: 0 15px;
+  max-width: 1430px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.ant-menu.menu {
+  flex-grow: 1;
+  background: none;
+  border: none;
+  line-height: 30px;
+  a {
+    text-decoration: none;
+  }
+}
+
+@primary-color: #000;
+:root {
+  --white: #fff;
+  --black: #000;
+
+  /* Primary colors*/
+  --primary-1: #2b8379;
+  --primary-2: #19a596;
+  --primary-3: #7fd1c7;
+  --primary-4: #7fd1c7;
+  --primary-5: #d0f3ef;
+
+  /* Neutral colors */
+  --neutral-1: #2c2c2c;
+  --neutral-2: #434343;
+  --neutral-3: #94868b;
+  --neutral-4: #d9cfd3;
+  --neutral-5: #f2ecee;
+
+  /* Accent-blue colors */
+  --accent-1: #970e3d;
+  --accent-2: #c43464;
+  --accent-3: #de7699;
+  --accent-4: #e6c3ce;
+  --accent-5: #fff2f7;
+}
+
+body {
+  background-color: var(--neutral-5);
+  margin: 0;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: table;
+  min-height: 100vh;
+  padding-top: 101px;
+}
+
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+.section {
+  padding: 70px 0 90px;
+}

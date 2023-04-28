@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Layout, Menu, Row, Switch, Select, Button } from "antd";
 import { MenuOutlined, UserOutlined, ShoppingCartOutlined, HeartOutlined } from "@ant-design/icons";
 import { Link, NavLink } from "react-router-dom";
@@ -6,8 +6,11 @@ import { FormattedMessage } from "react-intl";
 import useLocale from "hooks/useLocale";
 import Logo from "../Logo/Logo";
 import SearchBar from "../SearchBar/SearchBar";
-
+import { useSelector } from "react-redux";
+import { useAuth } from "hooks/useAuth";
+import { auth } from "apis/fiebase";
 import { cartCountSelector } from 'reducers/cartReducer/cartReducer'
+
 
 import './styles.scss';
 
@@ -17,8 +20,7 @@ import {
     Menu_link3,
     Menu_link4
 } from "i18n/Header/header";
-import { useSelector } from "react-redux";
-import { useAuth } from "hooks/useAuth";
+
 
 
 const {Header} = Layout;
@@ -62,6 +64,15 @@ export default function HeaderC () {
     const { setLocale } = useLocale();
     const cartCount = useSelector(cartCountSelector);
     const {isAuth} = useAuth();
+
+
+
+    useEffect(()=> {
+        const user = auth.currentUser;
+        if(user != null) {
+            console.log(user.email)
+        }
+    },[])
 
     const changeTheme = (value) => {
         setTheme(value ? 'dark' : 'light');

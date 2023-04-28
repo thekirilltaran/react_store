@@ -1,23 +1,19 @@
 import {useState, useEffect} from "react";
 import useFetch from 'hooks/useFetch';
-import {useDispatch} from "react-redux";
 import ProductCard from 'components/Card/Card'
 
 import { Col, Row, Button, Layout, Typography} from "antd";
 import "./styles.scss";
 import "assets/scss/card.scss";
 
-
-
 const { Title, Text } = Typography;
 const Background = "https://c1.wallpaperflare.com/preview/1017/473/68/clothing-store-shop-boutique-men-s-fashion.jpg";
 
 export default function Home() {
     const [products, setProducts] = useState();
-    const {get} = useFetch("https://store-18cd4-default-rtdb.firebaseio.com/");
-
+    const {get} = useFetch(process.env.REACT_APP_FIREBASE_DATABASEURL);
     useEffect(()=>{
-        get("products.json")
+        get("/products.json")
             .then(data=> {
                 if(data) {
                     setProducts(data)

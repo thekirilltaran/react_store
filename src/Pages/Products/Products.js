@@ -6,10 +6,10 @@ const {Title} = Typography;
 
 export default function Products() {
     const [products, setProducts] = useState();
-    const {get} = useFetch("https://store-18cd4-default-rtdb.firebaseio.com/");
+    const {get} = useFetch(process.env.REACT_APP_FIREBASE_DATABASEURL);
 
     useEffect(()=>{
-        get("products.json")
+        get("/products.json")
             .then(data=> {
                 if(data) {
                     setProducts(data)

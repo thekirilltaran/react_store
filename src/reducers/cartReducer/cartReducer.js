@@ -43,6 +43,7 @@ const { addProduct, removeProduct } = cartSlice.actions;
 export {
     cartSlice,
     addProduct,
+    removeProduct,
     cartCountSelector,
     cartValueSelector,
 };

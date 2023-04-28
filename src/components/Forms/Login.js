@@ -1,17 +1,19 @@
 import useMessages from "hooks/useMessages";
 import {useDispatch} from 'react-redux';
 import {useNavigate, Link} from 'react-router-dom';
-import {signInWithEmailAndPassword,
+import {
+    signInWithEmailAndPassword,
     signInWithPopup,
     GoogleAuthProvider,
     FacebookAuthProvider,
-    updateProfile} from "firebase/auth";
+    updateProfile, RecaptchaVerifier
+} from "firebase/auth";
 import {setUser} from 'reducers/usersReducer/userReducer';
 import {auth} from 'apis/fiebase'
 import {useState} from "react";
 import { Button, Input, Space, Form, Checkbox } from "antd";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
-
+import { collection, addDoc } from "firebase/firestore";
 
 function FormLogIn() {
     const [email, setEmail] = useState('');
@@ -22,17 +24,17 @@ function FormLogIn() {
     const {showMess, contextHolder} = useMessages();
     const provider = new GoogleAuthProvider();
 
+
     const handleLogin = (email, password) => {
         signInWithEmailAndPassword(auth, email, password)
             .then(({user}) => {
-                console.log(user)
                 const userAuth = {
                     email: user.email,
                     id: user.uid,
                     token: user.accessToken,
                 }
                 setRemember(user);
-                localStorage.setItem("userAuth", JSON.stringify(userAuth));
+                // localStorage.setItem("userAuth", JSON.stringify(userAuth));
                 dispatch(setUser({
                     email: user.email,
                     id: user.uid,
@@ -70,7 +72,7 @@ function FormLogIn() {
                                 id: user.uid,
                                 token: user.accessToken,
                             }));
-                // navigate('/profile');
+                navigate('/profile');
             }).catch((error) => {
                 console.log(error)
                 showMess("error", error.message)
@@ -95,7 +97,7 @@ function FormLogIn() {
                     id: user.uid,
                     token: user.accessToken,
                 }));
-                // navigate('/profile');
+                navigate('/profile');
             })
             .catch((error) => {
                 console.log(error)
@@ -126,7 +128,7 @@ function FormLogIn() {
                     name="email"
                     rules={[{ required: true, message: 'Please input your username!' }]}
                 >
-                    <Input type="email"
+                    <Input type="text"
                            value={email}
                            placeholder="Email"
                            onChange={(e) => setEmail(e.target.value)}/>
