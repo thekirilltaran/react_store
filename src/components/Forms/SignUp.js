@@ -152,14 +152,7 @@ export default function FormSignUp() {
                 const image = avatar ? await uploadImageProfile(avatar[0]) : "No image"
                 return {user, image};
             }).then(({user, image})=> {
-                setDoc(doc(db, "users", user.uid), {
-                    avatar: image,
-                    fullName: data?.username,
-                    phone: data?.phone,
-                    birthday: data?.birthday,
-                    gender: data?.gender,
-                    language: data?.language,
-                });
+                console.log(user.uid)
                 dispatch(setUser({
                     fullName: data?.username,
                     phone: data?.phone,
@@ -168,6 +161,15 @@ export default function FormSignUp() {
                     gender: data?.gender,
                     language: data?.language,
                 }));
+                setDoc(doc(db, "users", user.uid), {
+                    avatar: image,
+                    fullName: data?.username,
+                    phone: data?.phone,
+                    birthday: data?.birthday,
+                    gender: data?.gender,
+                    language: data?.language,
+                });
+
                 navigate('/profile');
             })
             .catch((error) => {
@@ -179,7 +181,7 @@ export default function FormSignUp() {
     //function show error if user have some issue with registration
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
-        showMess("error", "errorInfo")
+        showMess("error", "You have some issue")
     };
 
     return (<>

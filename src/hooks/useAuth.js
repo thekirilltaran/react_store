@@ -9,11 +9,9 @@ export function useAuth() {
     const {email, token, id, emailVerified} = useSelector(state => state.user);
     const [loading, setLoading] = useState(true)
     const dispatch = useDispatch();
-
     useEffect(()=> {
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                console.log(user)
                 dispatch(setUser({
                     email: user.email,
                     id: user.uid,

@@ -18,15 +18,13 @@ export default function Profile() {
     const [infoUser, setInfoUser] = useState({});
 
     async function getUser() {
-        console.log(id)
         await getDoc(doc(db, "users", id)).then(response => {
-            console.log(response.data())
             setInfoUser(response.data())
         })
     }
 
     useEffect(()=> {
-        if(loading) {getUser()}
+        if(loading && id) {getUser()}
     }, [email, id])
 
     function signOutUser () {
