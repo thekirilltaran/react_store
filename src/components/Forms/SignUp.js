@@ -152,7 +152,6 @@ export default function FormSignUp() {
                 const image = avatar ? await uploadImageProfile(avatar[0]) : "No image"
                 return {user, image};
             }).then(({user, image})=> {
-                console.log(user.uid)
                 dispatch(setUser({
                     fullName: data?.username,
                     phone: data?.phone,

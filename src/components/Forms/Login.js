@@ -6,7 +6,6 @@ import {
     signInWithPopup,
     GoogleAuthProvider,
     FacebookAuthProvider,
-    updateProfile, RecaptchaVerifier
 } from "firebase/auth";
 import {setUser} from 'reducers/usersReducer/userReducer';
 import {auth} from 'apis/fiebase'
@@ -24,8 +23,7 @@ function FormLogIn() {
     const {showMess, contextHolder} = useMessages();
     const provider = new GoogleAuthProvider();
 
-
-    const handleLogin = (email, password) => {
+    const onFinish = ({email, password}) => {
         signInWithEmailAndPassword(auth, email, password)
             .then(({user}) => {
                 const userAuth = {
@@ -34,12 +32,12 @@ function FormLogIn() {
                     token: user.accessToken,
                 }
                 setRemember(user);
-                // localStorage.setItem("userAuth", JSON.stringify(userAuth));
                 dispatch(setUser({
                     email: user.email,
                     id: user.uid,
                     token: user.accessToken,
                 }));
+
                 navigate('/profile');
             })
             .catch((error) => {
@@ -47,6 +45,11 @@ function FormLogIn() {
                 showMess("error", error.message)
             })
     }
+
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+        showMess("error", "You have some issue")
+    };
 
     const handleLoginGoogle = (e)=> {
         signInWithPopup(auth, provider)
@@ -106,8 +109,8 @@ function FormLogIn() {
                 wrapperCol={{ span: 16 }}
                 style={{ maxWidth: 600 }}
                 initialValues={{ remember: true }}
-                // onFinish={onFinish}
-                // onFinishFailed={onFinishFailed}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
                 autoComplete="off"
             >
                 <Form.Item
@@ -138,7 +141,7 @@ function FormLogIn() {
 
                 <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
                     <Space>
-                        <Button type="primary" htmlType="submit"  onClick={() => handleLogin(email, pass)}>Log in</Button>
+                        <Button type="primary" htmlType="submit">Log in</Button>
                         <Button type="default"  htmlType="button" onClick={(e) => handleLoginGoogle(e)}>Log in google <GoogleOutlined /></Button>
                         <Button type="primary"  htmlType="button" onClick={(e) => handleLoginFacebook(e)}>Log in Facebook <FacebookOutlined /></Button>
                     </Space>
